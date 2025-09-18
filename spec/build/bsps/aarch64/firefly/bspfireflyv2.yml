@@ -1,0 +1,93 @@
+SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
+arch: aarch64
+bsp: firefly_v2
+build-type: bsp
+cflags: []
+copyrights:
+- Copyright (C) 2025 RTBSD
+cppflags: []
+enabled-by: true
+family: firefly
+includes: []
+install:
+- destination: ${BSP_INCLUDEDIR}
+  source:
+  - bsps/aarch64/firefly/include/bsp.h
+  - bsps/aarch64/firefly/include/tm27.h
+
+- destination: ${BSP_INCLUDEDIR}/bsp
+  source:
+  - bsps/aarch64/firefly/include/bsp/irq.h
+
+links:
+- role: build-dependency
+  uid: abi
+- role: build-dependency
+  uid: ../grp
+- role: build-dependency
+  uid: optfirefly
+- role: build-dependency
+  uid: optfireflyv2
+- role: build-dependency
+  uid: ../../../cpukit/objsmp
+- role: build-dependency
+  uid: optloadoff
+- role: build-dependency
+  uid: optramlen
+- role: build-dependency
+  uid: optramori
+- role: build-dependency
+  uid: ../start
+- role: build-dependency
+  uid: ../optmmupages
+- role: build-dependency
+  uid: ../../optcachedata
+- role: build-dependency
+  uid: ../../optcacheinst
+- role: build-dependency
+  uid: ../../optclkfastidle
+- role: build-dependency
+  uid: ../../opto2
+- role: build-dependency
+  uid: ../../bspopts
+- role: build-dependency
+  uid: linkercmds
+- role: build-dependency
+  uid: ../../objdevserialarmpl011
+- role: build-dependency
+  uid: objsmp
+- role: build-dependency
+  uid: objgicv3
+- role: build-dependency
+  uid: objgtimer
+- role: build-dependency
+  uid: ../../obj
+- role: build-dependency
+  uid: ../../objirq
+source:
+- bsps/aarch64/shared/cache/cache.c
+- bsps/aarch64/shared/mmu/mmu-setup.c
+- bsps/aarch64/shared/mmu/vmsav8-64.c
+- bsps/shared/dev/getentropy/getentropy-cpucounter.c
+- bsps/shared/dev/btimer/btimer-cpucounter.c
+- bsps/shared/dev/serial/arm-pl011.c
+- bsps/shared/irq/irq-default-handler.c
+- bsps/shared/start/bspfatal-default.c
+- bsps/shared/start/gettargethash-default.c
+- bsps/shared/start/sbrk.c
+- bsps/shared/start/stackalloc.c
+- bsps/shared/start/wkspaceinitone.c
+- bsps/shared/start/mallocinitmulti.c
+- bsps/shared/start/bspgetworkarea-default.c
+
+- bsps/shared/dev/serial/console-termios-init.c
+- bsps/shared/dev/serial/console-termios.c
+
+- bsps/aarch64/firefly/start/bspstart.c
+- bsps/aarch64/firefly/start/bspstarthooks.c
+- bsps/aarch64/firefly/start/bspstartmmu.c
+- bsps/aarch64/firefly/start/bspcpuinfo.c
+- bsps/aarch64/firefly/start/bspreset.c
+- bsps/aarch64/firefly/fdt/bsp_fdt.c
+- bsps/aarch64/firefly/console/console.c
+type: build
